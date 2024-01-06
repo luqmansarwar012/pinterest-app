@@ -3,7 +3,7 @@ const router = express.Router();
 const userModel = require('./users')
 const passport = require('passport')
 const localStrategy = require('passport-local')
-passport.authenticate(new localStrategy(userModel.authenticate()))
+passport.use(new localStrategy(userModel.authenticate()))
 router.get('/', function (req, res, next) {
     res.render('index');
 });
@@ -12,6 +12,7 @@ router.post('/register', function (req, res, next) {
     const userData = new userModel({
         username, email, fullname
     })
+    console.log('blahhh')
     userModel.register(userData, password).then(function () {
         passport.authenticate('local')(req, res, function () {
             res.redirect('/profile')
@@ -32,7 +33,7 @@ router.post('/logout', function(req, res, next){
     });
 });
 router.get('/profile', isLoggedIn,function(req, res, next){
-   res.render('index')
+   res.render('profile')
 });
 
 function isLoggedIn(req,res,next){

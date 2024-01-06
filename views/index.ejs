@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Pinterest-Clone</title>
     <link rel='stylesheet' href='/stylesheets/login.css' />
   </head>
   <body>
@@ -9,14 +9,16 @@
     <div class="content">
       <!--pinterest logo-->
       <img src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo" class="img1" />
-      <p class="header">Log in to see more</p>
+      <p class="header">Signup</p>
+     <form action="/register", method="post">
+       <input type="email" name="email" placeholder="Email" class="detail" /><br />
+       <input type="text" name="username" placeholder="Username" class="detail" /><br />
+       <input type="text" name="fullname" placeholder="Full Name" class="detail" /><br />
+       <input type="password" name="password" placeholder="Password" class="detail" />
+       <input type="submit" placeholder="Password" class="btn int" value="Register" />
+     </form>
 
-      <input type="email" placeholder="Email" class="detail" /><br />
-      <input type="password" placeholder="Password" class="detail" />
-
-      <h4>Forgot your password?</h4>
-
-      <button class="btn int">Log in</button>
+      <a href="/forget">Forgot your password?</a>
       <p class="or">OR</p>
       <button class="btn fbk">
         <i
