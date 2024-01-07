@@ -18,7 +18,6 @@ router.post("/register", function (req, res, next) {
     email,
     fullname,
   });
-  console.log("blahhh");
   userModel.register(userData, password).then(function () {
     passport.authenticate("local")(req, res, function () {
       res.redirect("/feed");
@@ -26,27 +25,27 @@ router.post("/register", function (req, res, next) {
   });
 });
 
+// login page display
+router.get("/loginpage", function (req, res) {
+  res.render("loginpage");
+});
+
 // login logic
 router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/feed",
-    failureRedirect: "/loginn",
+    failureRedirect: "/loginpage",
   })
 );
 
-// login page display
-router.get("/loginn", function (req, res) {
-  res.render("login");
-});
-
-// log out logic
+// logout logic
 router.get("/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {
       return next(err);
     }
-    res.redirect("/loginn");
+    res.redirect("/loginpage");
   });
 });
 
@@ -63,7 +62,7 @@ router.get("/feed", isLoggedIn, function (req, res, next) {
 // checking if user is logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.redirect("/loginn");
+  res.redirect("/loginpage");
 }
 
 module.exports = router;
