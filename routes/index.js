@@ -21,7 +21,7 @@ router.post("/register", function (req, res, next) {
   console.log("blahhh");
   userModel.register(userData, password).then(function () {
     passport.authenticate("local")(req, res, function () {
-      res.redirect("/profile");
+      res.redirect("/feed");
     });
   });
 });
@@ -30,9 +30,8 @@ router.post("/register", function (req, res, next) {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/profile",
+    successRedirect: "/feed",
     failureRedirect: "/loginn",
-    failureFlash: true,
   })
 );
 
@@ -47,7 +46,7 @@ router.get("/logout", function (req, res, next) {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    res.redirect("/loginn");
   });
 });
 
@@ -56,10 +55,15 @@ router.get("/profile", isLoggedIn, function (req, res, next) {
   res.render("profile");
 });
 
+// feed rendring
+router.get("/feed", isLoggedIn, function (req, res, next) {
+  res.render("feed");
+});
+
 // checking if user is logged in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.redirect("/");
+  res.redirect("/loginn");
 }
 
 module.exports = router;
