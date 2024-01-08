@@ -38,16 +38,21 @@
       </div>
     </div>
     <div class="container">
+      <% if (user && user.pins && user.pins.length > 0) { %> <%
+      user.pins.forEach((pin) => { %>
       <div class="card" style="width: 18rem">
         <img
-          src="https://images.unsplash.com/photo-1682687221073-53ad74c2cad7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="/images/uploads/<%= pin.imageUrl %>"
           class="card-img-top"
           alt="..."
         />
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title"><%= pin.title %></h5>
         </div>
       </div>
+      <% }) %> <% } else { %>
+      <p>No pins available.</p>
+      <% } %>
     </div>
 
     <script

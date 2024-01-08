@@ -55,7 +55,13 @@ router.get("/logout", function (req, res, next) {
 // profile page rendring
 router.get("/profile", isLoggedIn, async function (req, res, next) {
   // fetching user from database using user info from session
-  const user = await userModel.findOne({ username: req.session.passport.user });
+  // populating: getting pin data from pin table using reference
+  const user = await userModel
+    .findOne({ username: req.session.passport.user })
+    .populate("pins");
+  const userObj = user.toJSON;
+  console.log("userrrr", userObj);
+  console.log("pinsss", user.pins);
   res.render("profile", { user });
 });
 
