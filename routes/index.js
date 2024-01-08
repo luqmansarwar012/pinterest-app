@@ -59,9 +59,6 @@ router.get("/profile", isLoggedIn, async function (req, res, next) {
   const user = await userModel
     .findOne({ username: req.session.passport.user })
     .populate("pins");
-  const userObj = user.toJSON;
-  console.log("userrrr", userObj);
-  console.log("pinsss", user.pins);
   res.render("profile", { user });
 });
 
@@ -91,7 +88,7 @@ router.post(
     });
     user.pins.push(pinData._id);
     await user.save();
-    res.send("file uploaded successfully");
+    res.redirect("/profile");
   }
 );
 

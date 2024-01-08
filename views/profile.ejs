@@ -38,19 +38,22 @@
       </div>
     </div>
     <div class="container">
-      <% if (user && user.pins && user.pins.length > 0) { %> <%
-      user.pins.forEach((pin) => { %>
-      <div class="card" style="width: 18rem">
-        <img
-          src="/images/uploads/<%= pin.imageUrl %>"
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title"><%= pin.title %></h5>
+      <% if (user && user.pins && user.pins.length > 0) { %> <% %>
+      <div class="cards flex">
+        <%user.pins.forEach((pin) => {%>
+        <div class="card" style="width: 18rem">
+          <img
+            src="/images/uploads/<%= pin.imageUrl %>"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= pin.title %></h5>
+          </div>
         </div>
+        <% }) %>
       </div>
-      <% }) %> <% } else { %>
+      <% } else { %>
       <p>No pins available.</p>
       <% } %>
     </div>
