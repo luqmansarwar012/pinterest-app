@@ -8,6 +8,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const passport = require("passport");
 const mongoose = require("mongoose");
+const flash = require("connect-flash");
 const app = express();
 require("dotenv").config();
 
@@ -17,6 +18,9 @@ mongoose.connect("mongodb://0.0.0.0:27017/pinterest-app");
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+// enabling flash messages
+app.use(flash());
 
 // setting up session
 app.use(

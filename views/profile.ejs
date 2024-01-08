@@ -21,11 +21,20 @@
             alt="Profile Picture"
           />
         </div>
-        <h2 class="name">Full Name</h2>
-        <h3 class="username">@username</h3>
-        <p class="tagline">tagline</p>
+        <h2 class="name"><%= user.fullname || fullname %></h2>
+        <h3 class="username">@<%= user.username || username%></h3>
+        <p class="tagline">user.tagline</p>
         <p class="description">description</p>
-        <a href="#" class="button">Account Settings</a>
+        <a href="/logout" class="button">Logout</a>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input
+            type="text"
+            name="filecaption"
+            placeholder="insert image caption"
+          />
+          <input type="file" name="file" />
+          <button type="submit">Upload</button>
+        </form>
       </div>
     </div>
     <div class="container">
